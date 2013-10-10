@@ -10,7 +10,6 @@
 </head>
 <body>
 <form action=""></form>
-<!-- <script type="text/javascript" src="./js/version/thin.0.1.js"></script> -->
 <script type="text/javascript">
     (function(){
     	var fileMap = {};
@@ -25,7 +24,7 @@
                 }
             }
         },false);
-    	var thin = {
+    	var irouJS = {
     		define:function(name,dependencies,factory){
     			if(!moduleMap[name]){
     				moduleMap[name] = {
@@ -99,18 +98,18 @@
                 readyFun[name].push(fn);
             }
     	};
-    	window.thin = thin;
+    	window.irouJS = irouJS;
     })();
 
 
-    thin.define('A',[],function(){
+    irouJS.define('A',[],function(){
     	var obj = {
     		name:'dxm',
     		age:'27'
     	};
     	return obj;
     });
-    thin.define('B',['A'],function(A){
+    irouJS.define('B',['A'],function(A){
     	console.log(A);
     	function sayHello(){
     		console.log('hello' + A.name);
@@ -120,19 +119,19 @@
     	};
     });
 
-    var b = thin.use('B');
+    var b = irouJS.use('B');
     b.sayHello();
 
 
-    thin.require(['http://libs.baidu.com/jquery/1.9.0/jquery.js'],function(){
+    irouJS.require(['http://libs.baidu.com/jquery/1.9.0/jquery.js'],function(){
         console.log($);
     });
 
-    thin.ready(function(){
+    irouJS.ready(function(){
         console.log(1);
     });
 
-    thin.ready(function(){
+    irouJS.ready(function(){
         console.log(2);
     });
 

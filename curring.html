@@ -1,0 +1,48 @@
+<html>
+<head>
+	<title>currying</title>
+</head>
+<body>
+	<script type="text/javascript">
+		function currying(fn){
+			var slice = [].slice;
+			var all_args = slice.call(arguments,1);
+			
+			return function(){
+				all_args = all_args.concat(slice.call(arguments,0));
+				if(all_args.length < fn.length){
+					return currying.apply(this,[fn].concat(all_args));
+				}else{
+					return fn.apply(null,all_args);	
+				}
+			};
+		};
+		function add(a,b,c,d){
+			return a + b + c + d;
+		};
+		var add1 = currying(add,10);
+		console.log(add1(2)(2)(2));
+
+
+        //currying_bind
+        function currying_bind(fn,scope){
+        	return function(){
+        		return fn.apply(scope,[].slice.call(arguments,0));
+        	};
+        };
+        var Person = {
+        	name:'person',
+        	say:function(age){
+        		alert('say hello:' + this.name + ',you age is' + age);
+        	}
+        };
+        var Tom = {
+        	name:'Tom'
+        }
+        var newSay = currying_bind(Person.say,Tom);
+        console.log(newSay(24));
+
+
+	</script>
+</body>
+</html>
