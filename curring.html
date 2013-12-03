@@ -7,7 +7,6 @@
 		function currying(fn){
 			var slice = [].slice;
 			var all_args = slice.call(arguments,1);
-			
 			return function(){
 				all_args = all_args.concat(slice.call(arguments,0));
 				if(all_args.length < fn.length){

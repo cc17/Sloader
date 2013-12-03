@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+</head>
+<body>
+<form action=""></form>
+<script type="text/javascript" src="js/sloader.js"></script>
+<script type="text/javascript">
+(function(){
+    Sloader.defined('base',[],function(){
+        return {
+            baseMethod:function(){
+                //alert('base');
+                console.log('base');
+            }
+        };
+    });
+    Sloader.defined('test',['base'],function(module){
+        return {
+            show:function(){
+                module.baseMethod();
+            }
+        }
+    });
+    var test = Sloader.use('test');
+    test.show();
+    //domready
+    Sloader.ready(function(){
+        console.log('domready');
+    });
+    Sloader.ready(function(){
+        console.log('domready2');
+    });
+
+    Sloader.require(['http://www.liebao.cn/newtab/weather/js/mainV3.js'],function(){
+        console.log('loaded')
+    });
+
+})();
+
+</script>
+</body>
+</html>
